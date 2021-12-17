@@ -14,9 +14,9 @@
         "build-local-stage": "npm run ionic build --configuration=stage",
         "build-local-prod": "npm run ionic build --configuration=production",
         
-        "build-dev": "npm run ng build --configuration=dev",
-        "build-stage": "npm run ng build --configuration=stage",
-        "build-prod": "npm run ng build --configuration=production",
+        "build-dev": "npx ng run app:build --configuration=dev",
+        "build-stage": "npx ng run app:build --configuration=stage",
+        "build-prod": "npx ng run app:build --configuration=production",
         
         "test": "ng test",
         "lint": "ng lint",
