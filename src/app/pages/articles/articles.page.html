@@ -1,0 +1,286 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Articles page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:34:14 
+ * Last modified  : 2021-12-16 21:09:21
+ */
+ -->
+<!-- header -->
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end" (click)="gotoSignUp()" *ngIf="settingsModel">
+            <ion-button [routerLink]="settingsModel.signUpUrl">
+                <b><ion-text  color="info">{{settingsModel.appName}}</ion-text> Sign Up &nbsp;</b>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<!-- header -->
+
+<!-- header -->
+<ion-content>
+    <!-- search -->
+    <ion-item color="secondary">
+        <ion-card color="info" class="search">
+            <ion-item color="info" lines="none">
+                <ion-icon [src]="stringKey.ICON_SEARCH"></ion-icon>
+
+                <ion-input
+                    placeholder="Search for help articles ..."
+                    autocomplete="off"
+                    type="text"
+                >
+                </ion-input>
+                <ion-button> {{stringKey.SRC}} </ion-button>
+            </ion-item>
+        </ion-card>
+    </ion-item>
+	<!-- search -->
+	
+	<!-- add content -->
+    <ion-item *ngIf="allowPreview">
+        <ion-button slot="end" (click)="addSubMainMenu()" *ngIf="!preview">
+            <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+            &nbsp; Add Content
+        </ion-button>
+    </ion-item>
+	<!-- add content -->
+
+	<!-- add content -->
+    <div *ngIf="articleModel">
+        <div *ngFor="let eachArticleItem of articleModel.data">
+            <!-- header-level-1 -->
+            <div
+                class="header-level-1"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_1"
+            >
+			
+                <ion-item>
+					<ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
+					{{eachArticleItem.articleComponentContent}}
+				</ion-item>
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        {{stringKey.DOW}}
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- header-level-1 -->
+
+            <!-- header-level-2 -->
+            <div
+                class="header-level-2"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_2"
+            >
+                <ion-item>
+                    <ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
+                    {{eachArticleItem.articleComponentContent}}
+                </ion-item>
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        {{stringKey.DOW}}
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- header-level-2 -->
+
+            <!-- header-level-3 -->
+            <div
+                class="header-level-3"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_3"
+            >
+                <ion-item>
+                    {{eachArticleItem.articleComponentContent}}
+                </ion-item>
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        {{stringKey.DOW}}
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- header-level-3 -->
+
+            <!-- para -->
+            <div
+                class="para"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA"
+            >
+                <ion-text
+                    [innerHTML]="bold(eachArticleItem.articleComponentContent)"
+                ></ion-text>
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        {{stringKey.DOW}}
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- para -->
+
+            <!-- list -->
+            <ul
+                class="list"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST"
+            >
+                <li
+                    [innerHTML]="bold(eachArticleItem.articleComponentContent)"
+                ></li>
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        {{stringKey.DOW}}
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ul>
+            <!-- list -->
+
+            <!-- list-img -->
+            <div
+                class="list-image"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST_IMAGE"
+            >
+                <img [src]="eachArticleItem.articleComponentContent" />
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        Down
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- list-img -->
+
+            <!-- para-img -->
+            <div
+                class="para-image"
+                *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA_IMAGE">
+                <image-holder [image]="eachArticleItem.articleComponentContent"></image-holder>
+            
+                <!-- <img
+                    [src]="eachArticleItem.articleComponentContent"
+                /> -->
+                <ion-item *ngIf="allowPreview">
+                    <ion-button>
+                        {{stringKey.ORD}} :: {{eachArticleItem.articleComponentOrder}}
+                    </ion-button>
+                    <ion-button (click)="orderUp(eachArticleItem)">
+                        Down
+                    </ion-button>
+                    <ion-button (click)="orderDown(eachArticleItem)">
+                        {{stringKey.UP}}
+                    </ion-button>
+                    <ion-button (click)="editContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_EDIT"></ion-icon>
+                    </ion-button>
+                    <ion-button (click)="deleteContent(eachArticleItem)">
+                        <ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </div>
+            <!-- para-img -->
+        </div>
+    </div>
+
+    <!-- help & support -->
+    <ion-card color="info" *ngIf="settingsModel">
+        <ion-card-header>
+            <ion-card-title>
+                <ion-icon [src]="stringKey.ICON_HELP"></ion-icon> &nbsp;{{stringKey.HE_SU_CE}}</ion-card-title
+            >
+        </ion-card-header>
+        <ion-card-content>
+            {{stringKey.SUP_TXT}}
+            <a [href]="mailto()">{{settingsModel.supportEmail}}</a>
+        </ion-card-content>
+    </ion-card>
+    <!-- help & support -->
+</ion-content>
+
+<!-- footer -->
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-item lines="none" color="primary" class="feedback">
+            <ion-label> &nbsp; {{stringKey.HLPFL}} </ion-label>
+            <ion-icon slot="end" [src]="stringKey.ICON_DELIGHTFUL" class="" (click)="feedback(feedbackEnum.DELIGHTFUL)"></ion-icon>
+            <ion-icon slot="end" [src]="stringKey.ICON_NEUTRAL" (click)="feedback(feedbackEnum.NEUTRAL)"></ion-icon>
+            <ion-icon slot="end" [src]="stringKey.ICON_SAD" (click)="feedback(feedbackEnum.SAD)"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>
+<!-- footer -->

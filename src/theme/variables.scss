@@ -1,0 +1,50 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary  Ionic Variables and Theming
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:16:57 
+ * Last modified  : 2021-11-23 16:05:36
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu&display=swap);
+ 
+:root {
+  // font
+  --ion-font-family: 'Ubuntu', sans-serif;
+  font-family: var(--ion-font-family) !important;
+  
+  /** primary **/
+  --ion-color-primary: #323433;
+  --ion-color-primary-rgb: 50,52,51;
+  --ion-color-primary-contrast: #dcdde4;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #2c2e2d;
+  --ion-color-primary-tint: #474847;
+
+  /** secondary **/
+  --ion-color-secondary: #5f6160;
+  --ion-color-secondary-rgb: 244, 244, 244;
+  --ion-color-secondary-contrast: #fff5f5;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #d7d8da;
+  --ion-color-secondary-tint: #f5f6f9;
+
+  /** medium **/
+  --ion-color-medium: #dcdde4;
+  --ion-color-medium-rgb: 152, 154, 162;
+  --ion-color-medium-contrast: #252525;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #86888f;
+  --ion-color-medium-tint: #a2a4ab;
+
+  /** info **/
+  --ion-color-info: #f7e393;
+  --ion-color-info-rgb: 255, 206, 0;
+  --ion-color-info-contrast: #000;
+  --ion-color-info-contrast-rgb: 255, 255, 255;
+  --ion-color-info-shade: #cec294;
+  --ion-color-info-tint: #8f740b;
+}

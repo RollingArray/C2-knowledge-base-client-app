@@ -1,0 +1,181 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Menu page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-01 20:47:46 
+ * Last modified  : 2021-11-17 20:24:35
+ */
+ -->
+<ion-app>
+    <ion-split-pane contentId="content">
+        <ion-menu contentId="content" type="overlay" color="light">
+            <!-- header -->
+            <ion-header lines="none" class="ion-no-border">
+                <ion-menu-toggle auto-hide="false">
+                    <ion-toolbar color="medium">
+                        <ion-card class="cursor-pointer margin-top-20-px">
+                            <ion-item color="primary" lines="none">
+                                <ion-label *ngIf="settingsModel">
+                                    <b
+                                        ><ion-text color="info"
+                                            >{{settingsModel.appName}}</ion-text
+                                        >
+                                        {{stringKey.HE_SU_CE}}</b
+                                    >
+                                </ion-label>
+                            </ion-item>
+                            <!-- toolbar -->
+                            <ion-item color="info" *ngIf="allowPreview">
+                                <ion-button slot="end" (click)="editSettings()">
+                                    <ion-icon
+                                        [src]="stringKey.ICON_EDIT"
+                                    ></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-card>
+                    </ion-toolbar>
+                </ion-menu-toggle>
+            </ion-header>
+            <!-- header -->
+
+            <ion-content color="light">
+                <!-- add menu category -->
+                <ion-item color="info" *ngIf="allowPreview">
+                    <ion-button (click)="addMenuCategory()">
+                        <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+                        &nbsp; {{stringKey.AD_ME_CAT}}
+                    </ion-button>
+                </ion-item>
+                <!-- add menu category -->
+
+                <!-- add menu category -->
+                <ion-menu-toggle auto-hide="false" *ngIf="rootMenuModel">
+                    <ion-card
+                        class="cursor-pointer"
+                        color="medium"
+                        *ngFor="let eachRootMenu of rootMenuModel.data"
+                    >
+                        <!-- root menu -->
+                        <ion-item color="medium" lines="none">
+                            <ion-icon
+                                [src]="stringKey.ICON_MENU"
+                                slot="start"
+                            ></ion-icon>
+                            <ion-label>
+                                {{eachRootMenu.articleTitle}}
+                            </ion-label>
+                        </ion-item>
+                        <!-- root menu -->
+
+                        <!-- toolbar -->
+                        <ion-item color="info" *ngIf="allowPreview">
+                            <ion-button>
+                                {{stringKey.ORD}} ::
+                                {{eachRootMenu.parentMenuOrder}}
+                            </ion-button>
+
+                            <ion-button
+                                (click)="orderMainMenu(eachRootMenu, 'up')"
+                            >
+                                {{stringKey.UP}}
+                            </ion-button>
+                            <ion-button
+                                (click)="orderMainMenu(eachRootMenu, 'down')"
+                            >
+                                {{stringKey.DOW}}
+                            </ion-button>
+                        </ion-item>
+                        <ion-item color="info" *ngIf="allowPreview">
+                            <ion-button (click)="addSubMainMenu(eachRootMenu)">
+                                <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+                                &nbsp; {{stringKey.AD_ME}}
+                            </ion-button>
+                            <ion-button
+                                slot="end"
+                                (click)="editMainMenu(eachRootMenu)"
+                            >
+                                <ion-icon
+                                    [src]="stringKey.ICON_EDIT"
+                                ></ion-icon>
+                            </ion-button>
+                            <ion-button
+                                slot="end"
+                                (click)="deleteMainMenu(eachRootMenu)"
+                            >
+                                <ion-icon
+                                    [src]="stringKey.ICON_DELETE"
+                                ></ion-icon>
+                            </ion-button>
+                        </ion-item>
+                        <!-- toolbar -->
+
+                        <!-- child menu -->
+                        <ion-menu-toggle auto-hide="false">
+                            <ion-card
+                                class="cursor-pointer"
+                                *ngFor="let eachMenu of eachRootMenu.childMenu.data; ; index as eachMenuIndex"
+                                (click)="gotoPage(eachMenu.articleId)"
+                            >
+                                <ion-item
+                                    lines="none"
+                                    color="light"
+                                    routerDirection="root"
+                                    routerLinkActive="active"
+                                >
+                                    <ion-icon
+                                        slot="start"
+                                        [src]="stringKey.ICON_RIGHT_ARROW"
+                                    ></ion-icon>
+                                    {{eachMenu.articleTitle}}
+                                </ion-item>
+                                <!-- toolbar -->
+                                <ion-item color="medium" *ngIf="allowPreview">
+                                    <ion-button>
+                                        {{stringKey.ORD}} ::
+                                        {{eachMenu.childMenuOrder}}
+                                    </ion-button>
+                                    <ion-button
+                                        (click)="orderSubMenu(eachRootMenu, eachMenu, 'up')"
+                                    >
+                                        {{stringKey.UP}}
+                                    </ion-button>
+                                    <ion-button
+                                        (click)="orderSubMenu(eachRootMenu, eachMenu, 'down')"
+                                    >
+                                        {{stringKey.DOW}}
+                                    </ion-button>
+                                </ion-item>
+
+                                <ion-item color="medium" *ngIf="allowPreview">
+                                    <ion-button
+                                        slot="end"
+                                        (click)="editChildMenu(eachMenu)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_EDIT"
+                                        ></ion-icon>
+                                    </ion-button>
+                                    <ion-button
+                                        slot="end"
+                                        (click)="deleteChildMenu(eachRootMenu, eachMenu)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_DELETE"
+                                        ></ion-icon>
+                                    </ion-button>
+                                </ion-item>
+                                <!-- toolbar -->
+                            </ion-card>
+                        </ion-menu-toggle>
+                        <!-- child menu -->
+                    </ion-card>
+                </ion-menu-toggle>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="content"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>
