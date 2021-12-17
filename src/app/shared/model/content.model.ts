@@ -16,6 +16,7 @@ import { OperationEnum } from "../enum/operation.enum";
 export interface ContentModel
 {
     articleId?: string,
+    articleTitle?: string,
     articleComponentOrder?: number;
     articleComponentId?: string;
     articleComponentType?: ElementTypeEnum;
