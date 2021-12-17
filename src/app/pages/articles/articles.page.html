@@ -18,10 +18,10 @@
         </ion-buttons>
         <ion-buttons slot="end" (click)="gotoSignUp()" *ngIf="settingsModel">
             <ion-button [routerLink]="settingsModel.signUpUrl">
-                <b
-                    ><ion-text color="info">{{settingsModel.appName}}</ion-text>
-                    Sign Up &nbsp;</b
-                >
+                <b>
+                    <ion-text color="info">{{settingsModel.appName}}</ion-text>
+                    Sign Up &nbsp;
+                </b>
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -35,31 +35,54 @@
     </div>
     <div *ngIf="hasData">
         <!-- search -->
-        <ion-item color="secondary" *ngIf="hasData">
+        <ion-item color="secondary" *ngIf="hasData" lines="none">
             <ion-card color="info" class="search">
                 <ion-item color="info" lines="none">
                     <ion-icon [src]="stringKey.ICON_SEARCH"></ion-icon>
 
-                    <ion-input
-                        placeholder="Search for help articles ..."
-                        autocomplete="off"
-                        type="text"
-                    >
+                    <ion-input [(ngModel)]="search" placeholder="Search for help articles ..." autocomplete="off"
+                        type="text">
                     </ion-input>
-                    <ion-button> {{stringKey.SRC}} </ion-button>
+                    <ion-button (click)="searchArticle()"> {{stringKey.SRC}} </ion-button>
                 </ion-item>
             </ion-card>
         </ion-item>
         <!-- search -->
 
+        <ion-item color="secondary" lines="none" *ngIf="searchDataLoading">
+            <div class="loading">
+                <img [src]="stringKey.ICON_LOADER" />
+            </div>
+            
+        </ion-item>
+        
+
+        <!-- search result -->
+        <ion-item color="secondary" *ngIf="hasSearchData">
+            <ion-card *ngIf="settingsModel" class="search">
+                <ion-card-header>
+                    <ion-card-title>
+                        <ion-icon [src]="stringKey.ICON_SEARCH"></ion-icon>
+                        &nbsp;{{searchResult.length}} result(s) found
+                    </ion-card-title>
+                </ion-card-header>
+                <ion-card-content *ngIf="searchResult">
+                    <ion-item *ngFor="let eachSearchResult of searchResult" (click)="gotoPage(eachSearchResult.articleId)">
+                        {{eachSearchResult.articleTitle}}
+                        <ion-icon [src]="stringKey.ICON_RIGHT_ARROW" slot="end"></ion-icon>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-item>
+
+
+
+
         <!-- add content -->
         <div *ngIf="articleModel">
             <div *ngFor="let eachArticleItem of articleModel.data">
                 <!-- header-level-1 -->
-                <div
-                    class="header-level-1"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_1"
-                >
+                <div class="header-level-1" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_1">
                     <ion-item>
                         <ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
                         {{eachArticleItem.articleComponentContent}}
@@ -86,10 +109,7 @@
                 <!-- header-level-1 -->
 
                 <!-- header-level-2 -->
-                <div
-                    class="header-level-2"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_2"
-                >
+                <div class="header-level-2" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_2">
                     <ion-item>
                         <ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
                         {{eachArticleItem.articleComponentContent}}
@@ -116,10 +136,7 @@
                 <!-- header-level-2 -->
 
                 <!-- header-level-3 -->
-                <div
-                    class="header-level-3"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_3"
-                >
+                <div class="header-level-3" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_3">
                     <ion-item>
                         {{eachArticleItem.articleComponentContent}}
                     </ion-item>
@@ -145,13 +162,8 @@
                 <!-- header-level-3 -->
 
                 <!-- para -->
-                <div
-                    class="para"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA"
-                >
-                    <ion-text
-                        [innerHTML]="bold(eachArticleItem.articleComponentContent)"
-                    ></ion-text>
+                <div class="para" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA">
+                    <ion-text [innerHTML]="bold(eachArticleItem.articleComponentContent)"></ion-text>
                     <ion-item *ngIf="allowPreview">
                         <ion-button>
                             {{stringKey.ORD}} ::
@@ -174,13 +186,8 @@
                 <!-- para -->
 
                 <!-- list -->
-                <ul
-                    class="list"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST"
-                >
-                    <li
-                        [innerHTML]="bold(eachArticleItem.articleComponentContent)"
-                    ></li>
+                <ul class="list" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST">
+                    <li [innerHTML]="bold(eachArticleItem.articleComponentContent)"></li>
                     <ion-item *ngIf="allowPreview">
                         <ion-button>
                             {{stringKey.ORD}} ::
@@ -203,10 +210,7 @@
                 <!-- list -->
 
                 <!-- list-img -->
-                <div
-                    class="list-image"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST_IMAGE"
-                >
+                <div class="list-image" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LIST_IMAGE">
                     <img [src]="eachArticleItem.articleComponentContent" />
                     <ion-item *ngIf="allowPreview">
                         <ion-button>
@@ -230,13 +234,8 @@
                 <!-- list-img -->
 
                 <!-- para-img -->
-                <div
-                    class="para-image"
-                    *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA_IMAGE"
-                >
-                    <image-holder
-                        [image]="eachArticleItem.articleComponentContent"
-                    ></image-holder>
+                <div class="para-image" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.PARA_IMAGE">
+                    <image-holder [image]="eachArticleItem.articleComponentContent"></image-holder>
 
                     <!-- <img
                     [src]="eachArticleItem.articleComponentContent"
@@ -269,8 +268,8 @@
             <ion-card-header>
                 <ion-card-title>
                     <ion-icon [src]="stringKey.ICON_HELP"></ion-icon>
-                    &nbsp;{{stringKey.HE_SU_CE}}</ion-card-title
-                >
+                    &nbsp;{{stringKey.HE_SU_CE}}
+                </ion-card-title>
             </ion-card-header>
             <ion-card-content>
                 {{stringKey.SUP_TXT}}
@@ -287,24 +286,12 @@
         <ion-item lines="none" color="primary" class="feedback">
             <ion-label> &nbsp; {{stringKey.HLPFL}} </ion-label>
             <div *ngIf="!feedbackSubmitted">
-                <ion-icon
-                    slot="end"
-                    [src]="stringKey.ICON_DELIGHTFUL"
-                    class="feedback-option"
-                    (click)="feedback(feedbackEnum.DELIGHTFUL)"
-                ></ion-icon>
-                <ion-icon
-                    slot="end"
-                    [src]="stringKey.ICON_NEUTRAL"
-                    class="feedback-option"
-                    (click)="feedback(feedbackEnum.NEUTRAL)"
-                ></ion-icon>
-                <ion-icon
-                    slot="end"
-                    [src]="stringKey.ICON_SAD"
-                    class="feedback-option"
-                    (click)="feedback(feedbackEnum.SAD)"
-                ></ion-icon>
+                <ion-icon slot="end" [src]="stringKey.ICON_DELIGHTFUL" class="feedback-option"
+                    (click)="feedback(feedbackEnum.DELIGHTFUL)"></ion-icon>
+                <ion-icon slot="end" [src]="stringKey.ICON_NEUTRAL" class="feedback-option"
+                    (click)="feedback(feedbackEnum.NEUTRAL)"></ion-icon>
+                <ion-icon slot="end" [src]="stringKey.ICON_SAD" class="feedback-option"
+                    (click)="feedback(feedbackEnum.SAD)"></ion-icon>
             </div>
             <ion-icon color="primary" *ngIf="feedbackSubmitted" size="large" [src]="stringKey.ICON_LOADER"></ion-icon>
         </ion-item>

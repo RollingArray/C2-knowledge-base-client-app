@@ -13,7 +13,7 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { StringKey } from 'src/app/shared/constant/string.constant';
 import { ElementTypeEnum } from 'src/app/shared/enum/element-type.enum';
@@ -21,10 +21,12 @@ import { FeedbackEnum } from 'src/app/shared/enum/feedback.enum';
 import { OperationEnum } from 'src/app/shared/enum/operation.enum';
 import { ArticleModel } from 'src/app/shared/model/article.model';
 import { ContentModel } from "src/app/shared/model/content.model";
+import { SearchModel } from 'src/app/shared/model/search.model';
 import { SettingsModel } from 'src/app/shared/model/settings.model';
 import { ArticleElementService } from 'src/app/shared/service/article-element.service';
 import { ArticleSettingsService } from 'src/app/shared/service/article-settings.service';
 import { ArticleService } from 'src/app/shared/service/article.service';
+import { SearchService } from 'src/app/shared/service/search.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -58,11 +60,31 @@ export class ArticlesPage implements OnInit, OnDestroy
 	 * Determines whether data has
 	 */
 	private _hasData = false;
+
+	/**
+	 * Search result of articles page
+	 */
+	private _searchResult: ContentModel[] = [];
 	
 	/**
 	 * Feedback submitted of articles page
 	 */
 	private _feedbackSubmitted = false;
+
+	/**
+	 * Search  of articles page
+	 */
+	public search: string;
+
+	/**
+	 * Determines whether data has
+	 */
+	private _hasSearchData = false;
+	
+	/**
+	 * Determines whether data has
+	 */
+	 private _searchDataLoading = false;
  
 	 /**
 	  * Gets settings model
@@ -125,6 +147,30 @@ export class ArticlesPage implements OnInit, OnDestroy
 	}
 
 	/**
+	 * Gets search result
+	 */
+	get searchResult()
+	{
+		return this._searchResult;
+	}
+
+	/**
+	 * Gets whether has search data
+	 */
+	get hasSearchData()
+	{
+		return this._hasSearchData;
+	}
+
+	/**
+	 * Gets search data loading
+	 */
+	get searchDataLoading()
+	{
+		return this._searchDataLoading;
+	}
+
+	/**
 	 * Creates an instance of articles page.
 	 * @param articleService 
 	 * @param activatedRoute 
@@ -139,7 +185,9 @@ export class ArticlesPage implements OnInit, OnDestroy
 		private alertController: AlertController,
 		private articleElementService: ArticleElementService,
 		private articleSettingsService: ArticleSettingsService,
-		private sanitizer: DomSanitizer
+		private searchService: SearchService,
+		private sanitizer: DomSanitizer,
+		private router: Router,
 	)
 	{
 		this._articleId = this.activatedRoute.snapshot.paramMap.get("articleId");
@@ -530,5 +578,60 @@ export class ArticlesPage implements OnInit, OnDestroy
 		  
 			  await alert.present();
 		});
+	}
+
+	/**
+	 * Searchs article
+	 */
+	public searchArticle()
+	{
+		this._searchDataLoading = true;
+		const passedData: SearchModel = {
+			searchKey: this.search
+		};
+
+
+		this.searchService.getSearchArticle(passedData).subscribe(async data =>
+		{
+			this._searchDataLoading = false;
+			this._searchResult = [];
+			this._hasSearchData = true;
+			if (data.success)
+			{
+				data.data.map((eachArticle, index) =>
+				{
+					if (index != 0)
+					{
+						const found = this._searchResult.filter(eachSearchArticle => eachSearchArticle.articleId === eachArticle.articleId);
+						if (found.length == 0)
+						{
+							this._searchResult = [
+								...this._searchResult,
+								eachArticle
+							]
+						}
+					}
+					else
+					{
+						this._searchResult = [
+							...this._searchResult,
+							eachArticle
+						]
+					}
+					
+				})
+				console.log(this._searchResult);	
+			}
+			else
+			{
+				
+			}
+		});
+	}
+
+	gotoPage(articleId: string)
+	{
+
+		this.router.navigate(['go','articles', articleId]);
 	}
 }
