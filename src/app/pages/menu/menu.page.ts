@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-12-16 20:51:36
+ * Last modified  : 2021-12-17 20:01:07
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
@@ -49,6 +49,11 @@ export class MenuPage implements OnInit, OnDestroy
 	private _settingsModel: SettingsModel;
 
 	/**
+	 * Determines whether data has
+	 */
+	private _hasData = false;
+
+	/**
 	 * Allow preview of menu page
 	 */
 	readonly allowPreview = environment.allowPreview;
@@ -68,6 +73,15 @@ export class MenuPage implements OnInit, OnDestroy
 	{
 		return this._settingsModel;
 	}
+
+	/**
+	 * Gets whether has data
+	 */
+	get hasData()
+	{
+		return this._hasData;
+	}
+	
 	/**
 	 * Creates an instance of project members page.
 	 * @param injector 
@@ -115,6 +129,7 @@ export class MenuPage implements OnInit, OnDestroy
 	{
 		this.menuService.getData().subscribe(data =>
 		{
+			this._hasData = true;
 			this._settingsModel = data.settings;
 			this._rootMenuModel = data.menu;
 			const firstArticle = this._rootMenuModel.data[0].childMenu.data[0].articleId;

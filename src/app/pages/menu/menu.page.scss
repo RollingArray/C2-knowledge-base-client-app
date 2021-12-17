@@ -7,8 +7,16 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-17 20:18:47
+ * Last modified  : 2021-12-17 20:17:42
  */
+
+.loading {
+  display: flex;
+	align-items: center;
+	justify-content: center;
+  margin-top: calc(50vh - 61px);
+}
+
 .active {
     --ion-text-color: var(--ion-color-primary);
     ion-icon {
