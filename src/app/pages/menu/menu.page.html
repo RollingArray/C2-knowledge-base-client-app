@@ -7,14 +7,21 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-17 20:24:35
+ * Last modified  : 2021-12-17 20:17:10
  */
  -->
-<ion-app>
-    <ion-split-pane contentId="content">
+<ion-app color="light">
+    <!-- loading -->
+    <ion-content *ngIf="!hasData" color="white">
+        <div class="loading">
+            <img [src]="stringKey.ICON_LOADER" />
+        </div>
+    </ion-content>
+    <!-- loading -->
+    <ion-split-pane contentId="content" *ngIf="hasData">
         <ion-menu contentId="content" type="overlay" color="light">
             <!-- header -->
-            <ion-header lines="none" class="ion-no-border">
+            <ion-header  lines="none" class="ion-no-border">
                 <ion-menu-toggle auto-hide="false">
                     <ion-toolbar color="medium">
                         <ion-card class="cursor-pointer margin-top-20-px">
