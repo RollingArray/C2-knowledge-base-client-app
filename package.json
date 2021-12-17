@@ -9,15 +9,12 @@
         "start-dev": "npm run ionic serve --configuration=dev --port 8000",
         "start-stage": "npm run ionic serve --configuration=stage --port 8000",
         "start-prod": "npm run ionic serve --configuration=production --port 8000",
-        
         "build-local-dev": "npm run ionic build --configuration=dev",
         "build-local-stage": "npm run ionic build --configuration=stage",
         "build-local-prod": "npm run ionic build --configuration=production",
-        
         "build-dev": "npx ng run app:build --configuration=dev",
         "build-stage": "npx ng run app:build --configuration=stage",
         "build-prod": "npx ng run app:build --configuration=production",
-        
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
