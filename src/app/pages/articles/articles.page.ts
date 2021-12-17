@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-12-16 20:51:02
+ * Last modified  : 2021-12-17 20:39:15
  */
 
 
@@ -52,7 +52,17 @@ export class ArticlesPage implements OnInit, OnDestroy
 	/**
 	 * Settings model of menu page
 	 */
-	 private _settingsModel: SettingsModel;
+	private _settingsModel: SettingsModel;
+	
+	/**
+	 * Determines whether data has
+	 */
+	private _hasData = false;
+	
+	/**
+	 * Feedback submitted of articles page
+	 */
+	private _feedbackSubmitted = false;
  
 	 /**
 	  * Gets settings model
@@ -96,6 +106,22 @@ export class ArticlesPage implements OnInit, OnDestroy
 	get preview()
 	{
 		return this._preview;
+	}
+
+	/**
+	 * Gets whether has data
+	 */
+	 get hasData()
+	 {
+		 return this._hasData;
+	 }
+	
+	/**
+	 * Gets feedback submitted
+	 */
+	get feedbackSubmitted()
+	{
+		return this._feedbackSubmitted;
 	}
 
 	/**
@@ -156,6 +182,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 		}
 		this.articleSettingsService.getData(article).subscribe(data =>
 		{
+			this._hasData = true;
 			this._articleModel = data.article;
 			this._settingsModel = data.settings;
 		});
@@ -486,12 +513,14 @@ export class ArticlesPage implements OnInit, OnDestroy
 	 */
 	feedback(feedback: FeedbackEnum)
 	{
+		this._feedbackSubmitted = true;
 		const passedData: ArticleModel = {
 			articleId: this._articleId,
 			feedback: feedback
 		};
 		this.articleService.articleFeedback(passedData).subscribe(async data =>
 		{
+			this._feedbackSubmitted = false;
 			const alert = await this.alertController.create({
 				cssClass: 'my-custom-class',
 				header: this.stringKey.THNKU,
