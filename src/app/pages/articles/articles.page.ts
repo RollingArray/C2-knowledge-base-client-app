@@ -425,6 +425,107 @@ export class ArticlesPage implements OnInit, OnDestroy
 	/**
 	 * Adds sub main menu
 	 */
+	 public async addContent()
+	 {
+		 let contentModel: ContentModel = {};
+
+		 const alert = await this.alertController.create({
+			 cssClass: 'myClass',
+			 header: 'Prompt!',
+			 inputs: [
+				 {
+					 value: '',
+					 name: 'articleComponentContent',
+					 type: 'textarea',
+					 placeholder: 'Article title'
+				 },
+ 
+			 ],
+			 buttons: [
+				 {
+					 text: `Add as - ${ElementTypeEnum.LEVEL_1}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.LEVEL_1, contentModel, OperationEnum.CREATE);
+					 }
+				 }, {
+					 text: `Add as - ${ElementTypeEnum.LEVEL_2}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.LEVEL_2, contentModel, OperationEnum.CREATE);
+					 }
+				 },
+				 {
+					 text: `Add as - ${ElementTypeEnum.LEVEL_3}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.LEVEL_3, contentModel, OperationEnum.CREATE);
+					 }
+				 }
+				 , {
+					 text: `Add as - ${ElementTypeEnum.LIST}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.LIST, contentModel, OperationEnum.CREATE);
+					 }
+				 }, {
+					 text: `Add as - ${ElementTypeEnum.LIST_IMAGE}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.LIST_IMAGE, contentModel, OperationEnum.CREATE);
+					 }
+				 },
+				 {
+					 text: `Add as - ${ElementTypeEnum.PARA}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.PARA, contentModel, OperationEnum.CREATE);
+					 }
+				 },
+				 {
+					 text: `Add as - ${ElementTypeEnum.PARA_IMAGE}`,
+					 handler: (data) =>
+					 {
+						 contentModel = {
+							 ...contentModel,
+							 articleComponentContent: data.articleComponentContent
+						 };
+						 this.generateContent(ElementTypeEnum.PARA_IMAGE, contentModel, OperationEnum.CREATE);
+					 }
+				 }
+			 ]
+		 });
+ 
+		 await alert.present();
+	 }
+	
+	/**
+	 * Adds sub main menu
+	 */
 	public async editContent(contentModel: ContentModel)
 	{
 

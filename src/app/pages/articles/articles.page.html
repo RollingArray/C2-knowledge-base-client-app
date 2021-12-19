@@ -76,6 +76,14 @@
         </ion-item>
 
 
+        <!-- add menu category -->
+        <ion-item *ngIf="allowPreview">
+            <ion-button (click)="addContent()">
+                <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+                &nbsp; {{stringKey.AD_AR_CO}}
+            </ion-button>
+        </ion-item>
+        <!-- add menu category -->
 
 
         <!-- add content -->
@@ -84,7 +92,6 @@
                 <!-- header-level-1 -->
                 <div class="header-level-1" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_1">
                     <ion-item>
-                        <ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
                         {{eachArticleItem.articleComponentContent}}
                     </ion-item>
                     <ion-item *ngIf="allowPreview">
@@ -111,7 +118,6 @@
                 <!-- header-level-2 -->
                 <div class="header-level-2" *ngIf="eachArticleItem.articleComponentType == elementTypeEnum.LEVEL_2">
                     <ion-item>
-                        <ion-icon [src]="stringKey.ICON_BOOKMARK"></ion-icon>
                         {{eachArticleItem.articleComponentContent}}
                     </ion-item>
                     <ion-item *ngIf="allowPreview">
