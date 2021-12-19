@@ -25,5 +25,7 @@ export class ApiUrls {
 	public static readonly CONTENT_CRUD: string = ApiUrls.API_BASE_PATH + "/content/crud";
 	public static readonly SETTINGS: string = ApiUrls.API_BASE_PATH + "/settings";
 	public static readonly ARTICLE_FEEDBACK: string = ApiUrls.API_BASE_PATH + "/article/feedback";
+	public static readonly SEARCH_ARTICLE: string = ApiUrls.API_BASE_PATH + "/article/search";
+
 	
 }
