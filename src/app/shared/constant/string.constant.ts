@@ -14,6 +14,7 @@ export class StringKey {
 
 	public static readonly HE_SU_CE: string = "Help & Support Center";
 	public static readonly AD_ME_CAT: string = "Add Menu Category";
+	public static readonly AD_AR_CO: string = "Add Article Content";
 	public static readonly ORD: string = "Order";
 	public static readonly DOW: string = "Down";
 	public static readonly UP: string = "Up";
