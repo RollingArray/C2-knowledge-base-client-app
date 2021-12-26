@@ -32,6 +32,13 @@ select:-webkit-autofill:focus {
   background-color: var(--ion-color-primary) !important;
 }
 
+.myClass{
+  --min-width: 600px;
+  textarea{
+    height: 100px;
+  }
+}
+
 ion-modal{
   --border-radius: 10px !important;
 }
