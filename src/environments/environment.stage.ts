@@ -10,8 +10,18 @@
  */
 
 export const environment = {
-  production: true,
-  apiEndpoint: 'https://c2.doc.stage.api.rollingarray.co.in/',
-  version: "1.12.40.121",
-  allowPreview: false
+	production: true,
+	apiEndpoint: 'https://c2.doc.stage.api.rollingarray.co.in/',
+	version: "1.12.40.121",
+	level: 'Stage',
+	allowPreview: false,
+	firebaseConfig: {
+		apiKey: "AIzaSyCuXMA63q2lv-RvW6hEnqa5kvN_ayURflg",
+		authDomain: "credibility-calculator-doc.firebaseapp.com",
+		projectId: "credibility-calculator-doc",
+		storageBucket: "credibility-calculator-doc.appspot.com",
+		messagingSenderId: "23476958001",
+		appId: "1:23476958001:web:1a108f9a9e9992ebf4f610",
+		measurementId: "G-B6LGPRHK5J"
+	}
 };
