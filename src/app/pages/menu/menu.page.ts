@@ -145,14 +145,19 @@ export class MenuPage implements OnInit, OnDestroy
 			this._settingsModel = data.settings;
 			this._rootMenuModel = data.menu;
 			const firstArticle = this._rootMenuModel.data[0].childMenu.data[0].articleId;
-			this.router.navigate(['go', 'articles', firstArticle]);
-			
+			if (this._articleId === 'go')
+			{
+				this.router.navigate(['go', 'articles', firstArticle]);	
+			}
+			else
+			{
+				this.router.navigate(['go', 'articles', this._articleId]);
+			}
 		});
 	}
 
 	gotoPage(articleId: string)
 	{
-		console.log(articleId);
 		this.router.navigate(['go', 'articles', articleId]);
 		this._articleId = articleId;
 	}
@@ -178,7 +183,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -232,7 +237,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -309,7 +314,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -393,7 +398,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -468,7 +473,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -513,7 +518,7 @@ export class MenuPage implements OnInit, OnDestroy
 					cssClass: 'secondary',
 					handler: () =>
 					{
-						console.log('Confirm Cancel');
+						//
 					}
 				}, {
 					text: 'Ok',
@@ -596,7 +601,7 @@ export class MenuPage implements OnInit, OnDestroy
 					 cssClass: 'secondary',
 					 handler: () =>
 					 {
-						 console.log('Confirm Cancel');
+						 //
 					 }
 				 }, {
 					 text: 'Ok',

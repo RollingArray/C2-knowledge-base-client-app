@@ -349,7 +349,6 @@ export class ArticlesPage implements OnInit, OnDestroy
 	 */
 	private generateContent(elementTypeEnum: ElementTypeEnum, contentModel: ContentModel, operationType: OperationEnum)
 	{
-		console.log(contentModel);
 		if (operationType === OperationEnum.CREATE)
 		{
 			contentModel = {
@@ -720,8 +719,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						]
 					}
 					
-				})
-				console.log(this._searchResult);	
+				})	
 			}
 			else
 			{
