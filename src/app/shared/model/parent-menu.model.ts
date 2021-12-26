@@ -19,6 +19,8 @@ export interface ParentMenuModel extends BaseModel
     parentMenuOrder?: number;
     articleChildId?: string;
     childMenuOrder?: number;
+    articleSubChildId?: string;
+    subChildMenuOrder?: number;
     articleTitle?: string;
     operationType?: OperationEnum;
     childMenu?: {

@@ -19,6 +19,7 @@ export class StringKey {
 	public static readonly DOW: string = "Down";
 	public static readonly UP: string = "Up";
 	public static readonly AD_ME: string = "Add Menu";
+	public static readonly AD_SUB_ME: string = "Add Sub Menu";
 	public static readonly SUP_TXT: string = 'We\'re always happy to help out with your any other questions you might have. You can ask a question at';
 	public static readonly HLPFL: string = "Was this article helpful?";
 	public static readonly SRC: string = "Search";
@@ -39,4 +40,8 @@ export class StringKey {
 	public static readonly ICON_NEUTRAL: string = StringKey.ICON_BASE_PATH + "neutral.svg";
 	public static readonly ICON_DELIGHTFUL: string = StringKey.ICON_BASE_PATH + "delightful.svg";
 	public static readonly ICON_LOADER: string = StringKey.ICON_BASE_PATH + 'loader.svg';
+
+	public static readonly IMAGE_BASE_PATH: string = "assets/images/";
+	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
+	public static readonly IMAGE_ICON_SMALL: string = StringKey.IMAGE_BASE_PATH + "app_icon-small.svg";
 }

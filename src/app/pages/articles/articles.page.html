@@ -17,6 +17,9 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-buttons slot="end" (click)="gotoSignUp()" *ngIf="settingsModel">
+            <ion-icon size="large"
+                [src]="stringKey.IMAGE_ICON_SMALL"
+            ></ion-icon>
             <ion-button [routerLink]="settingsModel.signUpUrl">
                 <b>
                     <ion-text color="info">{{settingsModel.appName}}</ion-text>

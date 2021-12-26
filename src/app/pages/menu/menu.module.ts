@@ -18,6 +18,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 
 import { MenuPage } from "./menu.page";
+import { MenuSelectPipe } from "src/app/shared/pipe/menu-select.pipe";
 
 const routes: Routes = [
 	{
@@ -44,6 +45,6 @@ const routes: Routes = [
 		IonicModule,
 		RouterModule.forChild(routes)
 	],
-	declarations: [MenuPage]
+	declarations: [MenuPage, MenuSelectPipe]
 })
 export class MenuPageModule { }

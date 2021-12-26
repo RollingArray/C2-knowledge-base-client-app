@@ -267,7 +267,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 			],
 			buttons: [
 				{
-					text: `Add as - ${ElementTypeEnum.LEVEL_1}`,
+					text: `${ElementTypeEnum.LEVEL_1}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -277,7 +277,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						this.generateContent(ElementTypeEnum.LEVEL_1, contentModel, OperationEnum.CREATE);
 					}
 				}, {
-					text: `Add as - ${ElementTypeEnum.LEVEL_2}`,
+					text: `${ElementTypeEnum.LEVEL_2}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -287,7 +287,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.LEVEL_3}`,
+					text: `${ElementTypeEnum.LEVEL_3}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -297,7 +297,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				}
 				, {
-					text: `Add as - ${ElementTypeEnum.LIST}`,
+					text: `${ElementTypeEnum.LIST}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -306,7 +306,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						this.generateContent(ElementTypeEnum.LIST, contentModel, OperationEnum.CREATE);
 					}
 				}, {
-					text: `Add as - ${ElementTypeEnum.LIST_IMAGE}`,
+					text: `${ElementTypeEnum.LIST_IMAGE}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -316,7 +316,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.PARA}`,
+					text: `${ElementTypeEnum.PARA}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -326,7 +326,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.PARA_IMAGE}`,
+					text: `${ElementTypeEnum.PARA_IMAGE}`,
 					handler: (data) =>
 					{
 						const contentModel: ContentModel = {
@@ -443,7 +443,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 			 ],
 			 buttons: [
 				 {
-					 text: `Add as - ${ElementTypeEnum.LEVEL_1}`,
+					 text: `${ElementTypeEnum.LEVEL_1}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -453,7 +453,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						 this.generateContent(ElementTypeEnum.LEVEL_1, contentModel, OperationEnum.CREATE);
 					 }
 				 }, {
-					 text: `Add as - ${ElementTypeEnum.LEVEL_2}`,
+					 text: `${ElementTypeEnum.LEVEL_2}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -464,7 +464,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					 }
 				 },
 				 {
-					 text: `Add as - ${ElementTypeEnum.LEVEL_3}`,
+					 text: `${ElementTypeEnum.LEVEL_3}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -475,7 +475,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					 }
 				 }
 				 , {
-					 text: `Add as - ${ElementTypeEnum.LIST}`,
+					 text: `${ElementTypeEnum.LIST}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -485,7 +485,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						 this.generateContent(ElementTypeEnum.LIST, contentModel, OperationEnum.CREATE);
 					 }
 				 }, {
-					 text: `Add as - ${ElementTypeEnum.LIST_IMAGE}`,
+					 text: `${ElementTypeEnum.LIST_IMAGE}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -496,7 +496,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					 }
 				 },
 				 {
-					 text: `Add as - ${ElementTypeEnum.PARA}`,
+					 text: `${ElementTypeEnum.PARA}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -507,7 +507,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					 }
 				 },
 				 {
-					 text: `Add as - ${ElementTypeEnum.PARA_IMAGE}`,
+					 text: `${ElementTypeEnum.PARA_IMAGE}`,
 					 handler: (data) =>
 					 {
 						 contentModel = {
@@ -543,7 +543,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 			],
 			buttons: [
 				{
-					text: `Add as - ${ElementTypeEnum.LEVEL_1}`,
+					text: `${ElementTypeEnum.LEVEL_1}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -553,7 +553,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						this.generateContent(ElementTypeEnum.LEVEL_1, contentModel, OperationEnum.EDIT);
 					}
 				}, {
-					text: `Add as - ${ElementTypeEnum.LEVEL_2}`,
+					text: `${ElementTypeEnum.LEVEL_2}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -564,7 +564,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.LEVEL_3}`,
+					text: `${ElementTypeEnum.LEVEL_3}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -575,7 +575,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				}
 				, {
-					text: `Add as - ${ElementTypeEnum.LIST}`,
+					text: `${ElementTypeEnum.LIST}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -585,7 +585,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 						this.generateContent(ElementTypeEnum.LIST, contentModel, OperationEnum.EDIT);
 					}
 				}, {
-					text: `Add as - ${ElementTypeEnum.LIST_IMAGE}`,
+					text: `${ElementTypeEnum.LIST_IMAGE}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -596,7 +596,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.PARA}`,
+					text: `${ElementTypeEnum.PARA}`,
 					handler: (data) =>
 					{
 						contentModel = {
@@ -607,7 +607,7 @@ export class ArticlesPage implements OnInit, OnDestroy
 					}
 				},
 				{
-					text: `Add as - ${ElementTypeEnum.PARA_IMAGE}`,
+					text: `${ElementTypeEnum.PARA_IMAGE}`,
 					handler: (data) =>
 					{
 						contentModel = {
