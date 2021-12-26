@@ -40,7 +40,7 @@ export class AnalyticsService
 	async log(page: string)
 	{
 		// log if production
-		if (!environment.level) 
+		if (environment.level === '') 
 		{
 			const getOs = await this.getOs();
 			const getDevice = await this.getBrowserPlatformProduct();
