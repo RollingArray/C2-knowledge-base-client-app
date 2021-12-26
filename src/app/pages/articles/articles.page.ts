@@ -23,6 +23,7 @@ import { ArticleModel } from 'src/app/shared/model/article.model';
 import { ContentModel } from "src/app/shared/model/content.model";
 import { SearchModel } from 'src/app/shared/model/search.model';
 import { SettingsModel } from 'src/app/shared/model/settings.model';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
 import { ArticleElementService } from 'src/app/shared/service/article-element.service';
 import { ArticleSettingsService } from 'src/app/shared/service/article-settings.service';
 import { ArticleService } from 'src/app/shared/service/article.service';
@@ -188,9 +189,15 @@ export class ArticlesPage implements OnInit, OnDestroy
 		private searchService: SearchService,
 		private sanitizer: DomSanitizer,
 		private router: Router,
+		private analyticsService: AnalyticsService
 	)
 	{
 		this._articleId = this.activatedRoute.snapshot.paramMap.get("articleId");
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log(this._articleId);
 
 		this.loadData();
 	}

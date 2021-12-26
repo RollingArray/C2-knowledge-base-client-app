@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "credibility-calculator-doc": {
+      "hosting": {
+        "app": [
+          "credibility-calculator-doc"
+        ]
+      }
+    }
+  }
+}
