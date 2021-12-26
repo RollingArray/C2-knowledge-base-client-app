@@ -12,6 +12,7 @@ import { DatePipe, LocationStrategy, HashLocationStrategy } from '@angular/commo
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ApiInterceptor } from "./shared/interceptor/api-interceptor.interceptor";
+import { AngularFireModule } from "@angular/fire";
 
 @NgModule({
 	declarations: [
@@ -32,6 +33,7 @@ import { ApiInterceptor } from "./shared/interceptor/api-interceptor.interceptor
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
 	],
 	providers: [
     //Push,
