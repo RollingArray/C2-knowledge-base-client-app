@@ -10,11 +10,12 @@
  */
 
 export const environment = {
-  production: true,
-  apiEndpoint: 'https://c2.doc.stage.api.rollingarray.co.in/',
-  version: "1.12.40.121",
-  allowPreview: false,
-	firebaseConfig : {
+	production: true,
+	apiEndpoint: 'https://c2.doc.stage.api.rollingarray.co.in/',
+	version: "1.12.40.121",
+	level: 'Stage',
+	allowPreview: false,
+	firebaseConfig: {
 		apiKey: "AIzaSyCuXMA63q2lv-RvW6hEnqa5kvN_ayURflg",
 		authDomain: "credibility-calculator-doc.firebaseapp.com",
 		projectId: "credibility-calculator-doc",
