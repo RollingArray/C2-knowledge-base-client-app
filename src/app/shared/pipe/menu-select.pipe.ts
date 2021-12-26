@@ -23,7 +23,6 @@ export class MenuSelectPipe implements PipeTransform
      */
     transform(menuText: string, activeArticleId: string)
     {
-        console.log(activeArticleId);
         const transformMenuText = menuText!.trim().toLowerCase().replace(/ /g, "-");
 
         if (transformMenuText === activeArticleId)
