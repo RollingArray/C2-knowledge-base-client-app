@@ -14,6 +14,7 @@ export const environment = {
   apiEndpoint: 'https://c2.doc.api.rollingarray.co.in/',
 	version: "1.16.50.120",
 	level: '',
+	logAnalytics: true,
   allowPreview: false,
 	firebaseConfig : {
 		apiKey: "AIzaSyCuXMA63q2lv-RvW6hEnqa5kvN_ayURflg",
