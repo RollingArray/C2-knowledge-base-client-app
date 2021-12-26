@@ -34,7 +34,7 @@ ion-input {
         ion-icon {
             margin: 0 10px 0 10px;
         }
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
         line-height: 40px;
         color: var(--ion-color-semi-dark);
@@ -48,7 +48,7 @@ ion-input {
         ion-icon {
             margin: 0 10px 0 10px;
         }
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
         line-height: 35px;
         color: var(--ion-color-semi-dark);
@@ -62,7 +62,7 @@ ion-input {
         ion-icon {
             margin: 0 10px 0 10px;
         }
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         line-height: 30px;
         color: var(--ion-color-semi-dark);
@@ -119,4 +119,9 @@ ion-alert {
     margin: 0 5px;
     font-size: 30px;
     cursor: pointer;
+}
+
+ion-card-title{
+    font-weight: 700;
+    font-size: 18px;
 }

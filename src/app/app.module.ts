@@ -13,10 +13,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ApiInterceptor } from "./shared/interceptor/api-interceptor.interceptor";
 
-
 @NgModule({
 	declarations: [
-    AppComponent,
+    AppComponent
 	],
 	entryComponents: [
 		
